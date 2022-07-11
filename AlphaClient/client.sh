@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nodeLog="/root/client.log"
+nodeLog="/root/nodeABC.log"
 while sshpass -p "password" rsync -rvz -e 'ssh -o StrictHostKeyChecking=no -p 22' --progress /var/log/auth.log root@server:$nodeLog 2>&1 >/dev/null | grep -q 'error'
 do
     sleep 1
