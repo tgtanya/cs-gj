@@ -14,4 +14,8 @@ RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_confi
     sed -ri 's/^#?PubkeyAuthentication\s+.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config && \
     sed -ri 's/^#?IgnoreRhosts\s+.*/IgnoreRhosts yes/' /etc/ssh/sshd_config
 
+RUN sed -i 's/\$RepeatedMsgReduction on/\$RepeatedMsgReduction off/g' /etc/rsyslog.conf && \
+    sed -i '/imklog/s/^/#/' /etc/rsyslog.conf
+
 EXPOSE 22
+CMD rsyslogd & sh /home/client.sh & /usr/sbin/sshd -D
