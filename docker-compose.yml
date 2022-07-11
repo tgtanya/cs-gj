@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  nodexyz:
+    build: ./AlphaClient
+    links:
+      - server
+    ports:
+      - "5001:22"
+    volumes:
+      - ./AlphaClient:/home
+  nodeabc:
+    build: ./AlphaClient
+    links:
+      - server
+    ports:
+      - "5002:22"
+    volumes:
+      - ./AlphaClient:/home
+  server:
+    build: ./AlphaServer
+    volumes:
+      - ./AlphaServer:/home
+    ports:
+      - "5000:22"
